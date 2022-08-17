@@ -1,6 +1,7 @@
 # Packages
 .idea
 __pycache__
+.DS_Store
 
 # Virtual environment
 venv/

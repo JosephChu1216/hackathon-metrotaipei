@@ -1,0 +1,29 @@
+[
+    {
+        "ID": "00001",
+        "STATUS": "已完成",
+        "TIME": "2022-08-16",
+        "EVENT_TYPE": "一般事件",
+        "DETAIL": "吃東西",
+        "STATUS_IMG_PATH": "/static/img/event/finish.png",
+        "UPLOAD_IMG_PATH": "/static/img/event/metro-eat.jpeg"
+    },
+    {
+        "ID": "00002",
+        "STATUS": "處理中",
+        "TIME": "2022-08-16",
+        "EVENT_TYPE": "一般事件",
+        "DETAIL": "飲料打翻",
+        "STATUS_IMG_PATH": "/static/img/event/nofitication.png",
+        "UPLOAD_IMG_PATH": "/static/img/event/metro-drinks.jpeg"
+    },
+    {
+        "ID": "00003",
+        "STATUS": "接獲通報",
+        "TIME": "2022-08-16",
+        "EVENT_TYPE": "緊急事件",
+        "DETAIL": "打人",
+        "STATUS_IMG_PATH": "/static/img/event/nofitication.png",
+        "UPLOAD_IMG_PATH": "/static/img/event/metro-fight.jpeg"
+    }
+]

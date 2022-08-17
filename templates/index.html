@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="utf-8">
+		<title>Emergency Reporting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+		<link href="{{url_for('static', filename='css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link href="{{url_for('static', filename='css/bootstrappage.css')}}" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="{{url_for('static', filename='css/flexslider.css')}}" rel="stylesheet"/>
+		<link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet"/>
+		<link href="{{url_for('static', filename='css/pagination.css')}}" rel="stylesheet"/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.min.css') }}"> <!-- https://fontawesome.com/ -->
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+		<!-- scripts -->
+		<script src="{{url_for('static', filename='js/jquery-1.7.2.min.js')}}"></script>
+		<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+		<script src="{{url_for('static', filename='js/superfish.js')}}"></script>
+		<script src="{{url_for('static', filename='js/jquery.scrolltotop.js')}}"></script>
+		<script src="{{url_for('static', filename='js/pagination.js')}}"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="{{url_for('static', filename='js/respond.min.js')}}"></script>
+		<![endif]-->
+		<title>直角分頁頁碼</title>
+		<style type="text/css">
+
+			/*設定 a 標籤的css樣式*/
+			.page-normal a{
+				border: 1px solid #ff6500;
+				padding: 5px 7px;
+				color: #ff6500;
+				margin-left: 20px;/*設定標籤 a 之間的間隔*/
+				text-decoration: none;/*去除頁碼數字下面的下劃線*/
+			}
+			/*設定滑鼠經過時 a 標籤的css樣式*/
+			.page-normal a:hover{
+				background-color: #ffbe94;
+			}
+
+			/*設定整個div的css樣式,該樣式主要用於設定網頁內的省略號 …… 的樣式，並且同時設定內容居中顯示*/
+			.page-normal{
+				color: #ff6500;
+				text-align: center;
+			}
+
+			/*設定當前頁面的css樣式*/
+			.page-normal .page-current{
+				color: #ffffff;
+				background-color: #ff6500;
+			}
+
+			/*設定左單括號 < 的css樣式*/
+			.page-normal .page-prev{
+				color: #ffe3c6;
+			}
+
+			/*進行程式碼優化，將不同css樣式中共有的屬性放在一起，有助於提高執行效率*/
+			.page-normal a, .page-normal a:hover, .page-normal .page-prev, .page-normal .page-current{
+				border: 1px solid #ff6500;
+				padding: 5px 7px;
+			}
+		</style>
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+<!--					<form method="POST" class="search_form">-->
+<!--						<input type="text" class="input-block-level search-query" Placeholder="Search...">-->
+<!--					</form>-->
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">
+							<li><a><font color="#eb4800">Hi {{ username }}!</font></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">
+					<a href="{{ url_for('.index') }}" class="logo pull-left"><font face="fantasy" size="6"><strong>緊急事件通報 Emergency Reporting</strong></font></a>
+					<nav id="menu" class="pull-right"></nav>
+				</div>
+			</section>
+			<section class="main-content">
+				{% for data in dataInfo %}
+					<div class="row">
+						<div class="span3">
+							<h1 class="title"><font face="Microsoft YaHei Mono" color="#eb4800">ID:</font> {{data["ID"]}}</h1>
+							<img src="{{ data['STATUS_IMG_PATH'] }}">
+						</div>
+						<div class="span3">
+							<h1 class="title"><font face="Microsoft YaHei Mono" color="#eb4800">進度</font> {{data["STATUS"]}}</h1>
+							<img src="{{data['UPLOAD_IMG_PATH']}}">
+						</div>
+						<div class="span6">
+							<h1 class="title"><font face="Microsoft YaHei Mono" color="#eb4800">事件</font> 詳細內容</h1>
+							<h2 class="itemname"><font face="Microsoft YaHei Mono" size="5">發生時間: {{data["TIME"]}}</font></h2>
+							<h2 class="category"><font face="Microsoft YaHei Mono" color="black" size="5">分類: {{data["EVENT_TYPE"]}}</font></h2>
+							<h2 class="category"><font face="Microsoft YaHei Mono" color="black" size="5">詳細內容: {{data["DETAIL"]}}</font></h2>
+						</div>
+					</div>
+				{% endfor %}
+			</section>
+			<section id="footer-bar">
+				<div class="row">
+					<div class="span2"></div>
+					<div class="span5">
+						<h4><font face="Microsoft YaHei Mono" color="white" size="5">聯繫我們</font></h4>
+					</div>
+					<div class="span5">
+						<p class="logo"><img src="{{url_for('static', filename='img/event/metro.png')}}" class="site_logo" alt=""></p>
+						<p><font face="Microsoft YaHei Mono" color="white" size="5">按讚 訂閱 開啟小鈴鐺</font></p>
+						<br/>
+					</div>
+				</div>
+			</section>
+			<section id="copyright">
+				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+			</section>
+		</div>
+		<script src="{{url_for('static', filename='js/common.js')}}"></script>
+		<script src="{{url_for('static', filename='js/jquery.flexslider-min.js')}}"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+    </body>
+</html>
