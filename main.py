@@ -1,3 +1,5 @@
+import cv2
+import infer
 
 i = 0
 cap = cv2.VideoCapture("dataset/Violence/V_129.mp4")
